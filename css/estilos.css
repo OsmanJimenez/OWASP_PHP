@@ -53,9 +53,7 @@ main {
 .formulario__grupo-input {
 	position: relative;
 }
-.formulario__label_password {
-	display: block ruby;
-}
+
 .formulario__input {
 	width: 100%;
 	background: #fff;
