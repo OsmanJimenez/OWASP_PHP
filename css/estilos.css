@@ -107,6 +107,7 @@ main {
 	padding: 0 15px;
 	border-radius: 3px;
 	display: none;
+	color: #fff;
 }
 
 .formulario__mensaje-activo {
@@ -171,19 +172,19 @@ main {
 
 /* ----- -----  Estilos para Captcha ----- ----- */
 fieldset { 
-	border: 1px solid #ccc; 
 	padding: 15px; 
 	max-width: 100%;
-	background-color: #fff;
+	background-color: #F3F4F6;
 	border-radius: 5px;
-  }
+	box-shadow: 1px 26px 68px -16px rgba(151,161,174,0.75);
+}
   
   section { padding: 0 15px; }
   
   .CaptchaWrap { position: relative; }
   .CaptchaTxtField { 
-	border-radius: 5px; 
-	border: 1px solid #ccc; 
+	border-radius: 20px; 
+	border: 0px solid #ccc; 
 	display: block;  
 	box-sizing: border-box;
   }
@@ -191,10 +192,10 @@ fieldset {
   #UserCaptchaCode { 
 	padding: 15px 10px; 
 	outline: none; 
-	font-size: 18px; 
+	font-size: 15px; 
 	font-weight: normal; 
-	font-family: 'Open Sans', sans-serif;
 	width: 343px;
+
   }
   #CaptchaImageCode { 
 	text-align:center;

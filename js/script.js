@@ -4,7 +4,7 @@ const inputs = document.querySelectorAll('#formulario input');
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{8,16}$/, // Letras, numeros, guion y guion_bajo
 	nombre: /^[a-zA-ZÀ-ÿ\s]{8,16}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{12,16}$/, // 12 a 15 digitos.
+	password: /^.{12,46}$/, // 12 a 46 caracteres.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	telefono: /^\d{7,10}$/ // 7 a 10 numeros.
 }

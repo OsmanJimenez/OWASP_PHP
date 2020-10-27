@@ -37,7 +37,7 @@
                         <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Osman Jimenez">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <p class="formulario__input-error">El usuario tiene que ser de 8 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                    <p class="formulario__input-error">El usuario tiene que ser de 8 a 16 caracteres y solo puede contener numeros, letras y guion bajo.</p>
                 </div>
 
                 <!-- Grupo: Contraseña -->
@@ -47,7 +47,7 @@
                         <input type="password" class="formulario__input" name="password" id="password">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <p class="formulario__input-error">La contraseña tiene que ser de 12 a 16 dígitos.</p>
+                    <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.</p>
                 </div>
 
                 <!-- Grupo: Contraseña 2 -->
@@ -78,15 +78,7 @@
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
-                </div>
-
-                <!-- Grupo: Terminos y Condiciones -->
-                <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
-                    <label class="formulario__label">
-                        <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
-                        Acepta los Terminos y Condiciones
-                    </label>
-                </div>
+                </div>      
 
                 <!-- Grupo: Verificación -->
                 <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
@@ -102,6 +94,14 @@
                               <input type="button" class="ReloadBtn" onclick='CreateCaptcha();'>
                             </div>
                           </fieldset>
+                    </label>
+                </div>
+
+                <!-- Grupo: Terminos y Condiciones -->
+                <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
+                    <label class="formulario__label">
+                        <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+                        Acepta los Terminos y Condiciones
                     </label>
                 </div>
 
