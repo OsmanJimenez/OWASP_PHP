@@ -88,13 +88,30 @@
                     </label>
                 </div>
 
+                <!-- Grupo: Verificación -->
+                <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
+                    <label class="formulario__label">
+                        <fieldset>
+                            <span id="SuccessMessage" class="success">Has ingresado exitosamente al captcha.</span>
+                            <input type="text" id="UserCaptchaCode" class="CaptchaTxtField" placeholder='Ingrese Captcha - Sensible a mayúsculas'>
+                            <span id="WrongCaptchaError" class="error"></span>
+                            <div class='CaptchaWrap'>
+                              <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+                              </div> 
+                              <input type="button" class="ReloadBtn" onclick='CreateCaptcha();'>
+                            </div>
+                          </fieldset>
+                    </label>
+                </div>
+
                 <div class="formulario__mensaje" id="formulario__mensaje">
                     <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
                 </div>
 
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
-                    <button type="submit" class="formulario__btn">Enviar</button>
-                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                    <button type="submit" class="formulario__btn" onclick="CheckCaptcha();">Enviar</button>
+                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito" >Formulario enviado exitosamente!</p>
                 </div>
             </form>
         </div> 
@@ -107,5 +124,9 @@
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <!-- JS Bootrstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-- JQuery -->
+    <script src='js/jquery.min.js'></script>
+    <script src='js/captcha.js'></script>
+
 </body>
 </html>

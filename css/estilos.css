@@ -20,8 +20,7 @@ body {
 }
 
 .caratula{
-    padding: 20px;
-    
+    padding: 20px;   
 }
 
 .registro img{
@@ -170,6 +169,82 @@ main {
 	border: 3px solid #f53b57;
 }
 
+/* ----- -----  Estilos para Captcha ----- ----- */
+fieldset { 
+	border: 1px solid #ccc; 
+	padding: 15px; 
+	max-width: 100%;
+	background-color: #fff;
+	border-radius: 5px;
+  }
+  
+  section { padding: 0 15px; }
+  
+  .CaptchaWrap { position: relative; }
+  .CaptchaTxtField { 
+	border-radius: 5px; 
+	border: 1px solid #ccc; 
+	display: block;  
+	box-sizing: border-box;
+  }
+  
+  #UserCaptchaCode { 
+	padding: 15px 10px; 
+	outline: none; 
+	font-size: 18px; 
+	font-weight: normal; 
+	font-family: 'Open Sans', sans-serif;
+	width: 343px;
+  }
+  #CaptchaImageCode { 
+	text-align:center;
+	margin-top: 15px;
+	padding: 0px 0;
+	width: 300px;
+	overflow: hidden;
+  }
+  
+  .capcode { 
+	font-size: 46px; 
+	display: block; 
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none; 
+	cursor: default;
+	letter-spacing: 1px;
+	color: #ccc;
+	font-family: 'Roboto Slab', serif;
+	font-weight: 100;
+	font-style: italic;
+  }
+  
+  .ReloadBtn { 
+	background:url('https://cdn3.iconfinder.com/data/icons/basic-interface/100/update-64.png') left top no-repeat;   
+	background-size : 100%;
+	width: 32px; 
+	height: 32px;
+	border: 0px; outline none;
+	position: absolute; 
+	bottom: 30px;
+	left : 310px;
+	outline: none;
+	cursor: pointer; /**/
+
+  }
+  
+  .error { 
+	color: #f53b57; 
+	font-size: 12px; 
+	display: none; 
+  }
+  .success {
+	color: #1ed12d;
+	font-size: 18px;
+	margin-bottom: 15px;
+	display: none;
+  }
+
+
 
 /* ----- -----  Mediaqueries ----- ----- */
 @media screen and (max-width: 800px) {
@@ -187,3 +262,4 @@ main {
 		width: 100%;
 	}
 }
+
