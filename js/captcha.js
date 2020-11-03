@@ -46,6 +46,8 @@ function ValidateCaptcha() {
   var string1 = removeSpaces(cd);
   var string2 = removeSpaces($('#UserCaptchaCode').val());
   if (string1 == string2) {
+    var boton = document.getElementById("subir");
+    boton.disabled = false;
     return true;
   }
   else {
@@ -75,6 +77,7 @@ function CheckCaptcha() {
       CreateCaptcha();
       $('#WrongCaptchaError').fadeOut(100);
       $('#SuccessMessage').fadeIn(500).css('display','block').delay(5000).fadeOut(250);
+
     }
   }  
 }

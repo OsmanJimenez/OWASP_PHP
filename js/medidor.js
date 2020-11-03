@@ -59,17 +59,17 @@ $(function() {
 	  var divClaveCorrecta = $(".clavecorrecta"),
 		  espanNivelesColores = $(".spanNivelesColores"),
 		  nivelSeguridad = $("#nivelseguridad");
-	  e.preventDefault();
-	  e.stopPropagation();
+	//e.preventDefault();
+	//e.stopPropagation();
 	  if (inputpassword.val() === inputRepetirpassword.val()) {
 		divClaveCorrecta.removeClass("oculto");
 		espanNivelesColores.removeClass().addClass("spanNivelesColores nulo");
-		nivelSeguridad.html("");
+		//nivelSeguridad.html("");
 		return true;
 	  } else {
 		inputpassword.focus();
 		mostrarError();
-		inputs.val("");
+		//inputs.val("");
 	  }
 	}
 	function mostrarError() {
@@ -94,6 +94,5 @@ $(function() {
 	});
   
 	boton.click(comprobarClave);
-  
-	inputs.focus(limpiarError);
+	//inputs.focus(limpiarError);
   });
