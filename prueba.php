@@ -1,10 +1,19 @@
+<?php
+session_start();
+$sessData = !empty($_SESSION['sessData'])?$_SESSION['sessData']:'';
+if(!empty($sessData['status']['msg'])){
+    $statusMsg = $sessData['status']['msg'];
+    $statusMsgType = $sessData['status']['type'];
+    unset($_SESSION['sessData']['status']);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrate</title>
+    <title>Iniciar Sesión</title>
     <!-- CSS Normalize -->
     <link rel="stylesheet" href="css/normalize.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -27,16 +36,16 @@
                     <div class="row">
                         <div class="col">
                             <!-- Grupo: Usuario -->
-                            <div class="formulario__grupo" id="grupo__usuario">
-                                <label for="usuario" class="formulario__label">Usuario</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="text" class="formulario__input" name="usuario" id="usuario"
-                                        placeholder="Digite su usuario" required>
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            <div class="formulario__grupo" id="grupo__email">
+                                    <label for="correo" class="formulario__label">Correo Electrónico</label>
+                                    <div class="formulario__grupo-input">
+                                        <input type="email" class="formulario__input" name="email" id="email"
+                                            placeholder="correo@correo.com">
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                    </div>
+                                    <p class="formulario__input-error">El correo solo puede contener letras, numeros,
+                                        puntos, guiones y guion bajo.</p>
                                 </div>
-                                <p class="formulario__input-error">El usuario tiene que ser de 8 a 16 dígitos y solo
-                                    puede contener numeros, letras y guion bajo.</p>
-                            </div>
                         </div>
                         <div class="col">
                             <!-- Grupo: Contraseña -->
@@ -91,7 +100,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary" id="subir" disabled onclick=""
-                            style="margin: 20px;">Iniciar
+                            style="margin: 20px;" name="loginSubmit">Iniciar
                             Sesión</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
                             exitosamente!</p>

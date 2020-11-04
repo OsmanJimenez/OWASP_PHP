@@ -1,41 +1,41 @@
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 const expresiones = {
-	usuario: /^[a-zA-Z0-9\_\-]{8,16}$/, // Letras, numeros, guion y guion_bajo
-	nombre: /^[a-zA-ZÀ-ÿ\s]{8,16}$/, // Letras y espacios, pueden llevar acentos.
+	first_name: /^[a-zA-ZÀ-ÿ\s]{8,16}$/, // Letras y espacios, pueden llevar acentos.
+	last_name: /^[a-zA-ZÀ-ÿ\s]{8,16}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{12,46}$/, // 12 a 46 caracteres.
-	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	telefono: /^\d{7,10}$/ // 7 a 10 numeros.
+	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	phone: /^\d{7,10}$/ // 7 a 10 numeros.
 }
 
 const campos = {
-	usuario: false,
-	nombre: false,
+	first_name: false,
+	last_name: false,
 	password: false,
-	correo: false,
-	telefono: false
+	email: false,
+	phone: false
 }
 
 const validarFormulario = (e) => {
 	switch (e.target.name) {
-		case "usuario":
-			validarCampo(expresiones.usuario, e.target, 'usuario');
+		case "first_name":
+			validarCampo(expresiones.first_name, e.target, 'first_name');
 		break;
-		case "nombre":
-			validarCampo(expresiones.nombre, e.target, 'nombre');
+		case "last_name":
+			validarCampo(expresiones.last_name, e.target, 'last_name');
 		break;
 		case "password":
 			validarCampo(expresiones.password, e.target, 'password');
-			validarPassword2();
+			validarconfirm_password();
 		break;
-		case "password2":
-			validarPassword2();
+		case "confirm_password":
+			validarconfirm_password();
 		break;
-		case "correo":
-			validarCampo(expresiones.correo, e.target, 'correo');
+		case "email":
+			validarCampo(expresiones.email, e.target, 'email');
 		break;
-		case "telefono":
-			validarCampo(expresiones.telefono, e.target, 'telefono');
+		case "phone":
+			validarCampo(expresiones.phone, e.target, 'phone');
 		break;
 	}
 }
@@ -58,23 +58,23 @@ const validarCampo = (expresion, input, campo) => {
 	}
 }
 
-const validarPassword2 = () => {
+const validarconfirm_password = () => {
 	const inputPassword1 = document.getElementById('password');
-	const inputPassword2 = document.getElementById('password2');
+	const inputconfirm_password = document.getElementById('confirm_password');
 
-	if(inputPassword1.value !== inputPassword2.value){
-		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-correcto');
-		document.querySelector(`#grupo__password2 i`).classList.add('fa-times-circle');
-		document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
-		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
+	if(inputPassword1.value !== inputconfirm_password.value){
+		document.getElementById(`grupo__confirm_password`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__confirm_password`).classList.remove('formulario__grupo-correcto');
+		document.querySelector(`#grupo__confirm_password i`).classList.add('fa-times-circle');
+		document.querySelector(`#grupo__confirm_password i`).classList.remove('fa-check-circle');
+		document.querySelector(`#grupo__confirm_password .formulario__input-error`).classList.add('formulario__input-error-activo');
 		campos['password'] = false;
 	} else {
-		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
-		document.querySelector(`#grupo__password2 i`).classList.remove('fa-times-circle');
-		document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
-		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		document.getElementById(`grupo__confirm_password`).classList.remove('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__confirm_password`).classList.add('formulario__grupo-correcto');
+		document.querySelector(`#grupo__confirm_password i`).classList.remove('fa-times-circle');
+		document.querySelector(`#grupo__confirm_password i`).classList.add('fa-check-circle');
+		document.querySelector(`#grupo__confirm_password .formulario__input-error`).classList.remove('formulario__input-error-activo');
 		campos['password'] = true;
 	}
 }
@@ -88,7 +88,7 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 	 
 	const terminos = document.getElementById('terminos');
-	if(campos.usuario && campos.nombre && campos.password && campos.correo && campos.telefono && terminos.checked ){
+	if(campos.first_name && campos.last_name && campos.password && campos.email && campos.phone && terminos.checked ){
 		
 		//formulario.reset();
 

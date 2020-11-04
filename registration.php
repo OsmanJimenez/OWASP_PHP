@@ -1,3 +1,12 @@
+<?php
+session_start();
+$sessData = !empty($_SESSION['sessData'])?$_SESSION['sessData']:'';
+if(!empty($sessData['status']['msg'])){
+    $statusMsg = $sessData['status']['msg'];
+    $statusMsgType = $sessData['status']['type'];
+    unset($_SESSION['sessData']['status']);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,15 +30,15 @@
         </div>
         <div class="col-sm">
             <div class="contenedor">
-                <form action="php/add_u.php" method="POST" id="formulario" name="formulario">
-                    <div class="container">
+            <form action="userAccount.php" method="post" >
+                    <div class="container" id="formulario">
                         <div class="row">
                             <div class="col">
-                                <!-- Grupo: Usuario -->
-                                <div class="formulario__grupo" id="grupo__usuario">
-                                    <label for="usuario" class="formulario__label">Usuario</label>
+                                <!-- Grupo: Nombre -->
+                                <div class="formulario__grupo" id="grupo__first_name">
+                                    <label for="first_name" class="formulario__label">Nombre:</label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="usuario" id="usuario"
+                                        <input type="text" class="formulario__input" name="first_name" id="first_name"
                                             placeholder="Digite su usuario">
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
@@ -38,11 +47,11 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <!-- Grupo: Nombre -->
-                                <div class="formulario__grupo" id="grupo__nombre">
-                                    <label for="nombre" class="formulario__label">Nombre</label>
+                                <!-- Grupo: Apellido -->
+                                <div class="formulario__grupo" id="grupo__last_name">
+                                    <label for="last_name" class="formulario__label">Apellido:</label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="nombre" id="nombre"
+                                        <input type="text" class="formulario__input" name="last_name" id="last_name"
                                             placeholder="Osman Jimenez">
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
@@ -80,12 +89,12 @@
                             </div>
                             <div class="col">
                                 <!-- Grupo: Contraseña 2 -->
-                                <div class="formulario__grupo" id="grupo__password2">
+                                <div class="formulario__grupo" id="grupo__confirm_password">
 
-                                    <label for="password2" class="formulario__label">Repetir Contraseña</label>
+                                    <label for="confirm_password" class="formulario__label">Repetir Contraseña</label>
                                     <div class="formulario__grupo-input">
-                                        <input type="password" class="formulario__input" maxlength="18" name="password2"
-                                            id="password2">
+                                        <input type="password" class="formulario__input" maxlength="18" name="confirm_password"
+                                            id="confirm_password">
                                         <i class="formulario__validacion-estado fas fa-times-circle">
                                             <span class="fas fa-eye" id="ver2" onclick="mostrar2()"></span>
                                         </i>
@@ -100,10 +109,10 @@
                         <div class="row">
                             <div class="col">
                                 <!-- Grupo: Correo Electronico -->
-                                <div class="formulario__grupo" id="grupo__correo">
+                                <div class="formulario__grupo" id="grupo__email">
                                     <label for="correo" class="formulario__label">Correo Electrónico</label>
                                     <div class="formulario__grupo-input">
-                                        <input type="email" class="formulario__input" name="correo" id="correo"
+                                        <input type="email" class="formulario__input" name="email" id="email"
                                             placeholder="correo@correo.com">
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
@@ -113,10 +122,10 @@
                             </div>
                             <div class="col">
                                 <!-- Grupo: Teléfono -->
-                                <div class="formulario__grupo" id="grupo__telefono">
+                                <div class="formulario__grupo" id="grupo__phone">
                                     <label for="telefono" class="formulario__label">Teléfono</label>
                                     <div class="formulario__grupo-input">
-                                        <input type="number" class="formulario__input" name="telefono" id="telefono"
+                                        <input type="number" class="formulario__input" name="phone" id="phone"
                                             placeholder="3212056161">
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
@@ -171,7 +180,7 @@
                                 </div>
 
                                 <div class="formulario__grupo formulario__grupo-btn-enviar">
-                                    <button type="submit" class="formulario__btn" id="enviar"
+                                    <button type="submit" class="formulario__btn" id="enviar" name="signupSubmit"
                                         onclick="CheckCaptcha();">Enviar</button>
                                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario
                                         enviado exitosamente!</p>
