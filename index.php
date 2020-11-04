@@ -25,25 +25,10 @@ if(!empty($sessData['status']['msg'])){
 	<div class="container">
         <?php
 			if(!empty($sessData['userLoggedIn']) && !empty($sessData['userID'])){
-				include 'user.php';
-				$user = new User();
-				$conditions['where'] = array(
-					'id' => $sessData['userID'],
-				);
-				$conditions['return_type'] = 'single';
-				$userData = $user->getRows($conditions);
+                header("Location: http://localhost/OWASP_PHP/Admin");
 		?>
-        <h2>Bienvenid@ <?php echo $userData['first_name']; ?>!</h2>
-        <a href="userAccount.php?logoutSubmit=1" class="logout">Cerrar Sesión</a>
-		<div class="regisFrm">
-			<p><b>Nombre: </b><?php echo $userData['first_name'].' '.$userData['last_name']; ?></p>
-            <p><b>Correo: </b><?php echo $userData['email']; ?></p>
-            <p><b>Teléfono: </b><?php echo $userData['phone']; ?></p>
-		</div>
-	</div>
+        
         <?php }else{ ?>
-
-
 			<div class="row justify-content-center align-items-center full">
         <div class="col-sm registro">
             <img class="" src="img/register_fondo.jpg" alt="">
