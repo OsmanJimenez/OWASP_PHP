@@ -1,92 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación de Formulario con Javascript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrate</title>
     <!-- CSS Normalize -->
-	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- CSS Propios -->
-	<link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
+
 <body>
     <div class="row justify-content-center align-items-center full">
         <div class="col-sm registro">
             <img class="" src="img/register_fondo.jpg" alt="">
         </div>
         <div class="col-sm">
-        <div class="contenedor">
-            <form action="php/log_u.php" method="POST" class="formulario" id="formulario" name="formulario1">
-                <!-- Grupo: Usuario -->
-                <div class="formulario__grupo" id="grupo__usuario">
-                    <label for="usuario" class="formulario__label">Usuario</label>
-                    <div class="formulario__grupo-input">
-                        <input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="Digite su usuario" required>
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <p class="formulario__input-error">El usuario tiene que ser de 8 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                </div>
-                <!-- Grupo: Contraseña -->
-                <div class="formulario__grupo" id="grupo__password">
-                    <label for="password" class="formulario__label">Contraseña</label>
-                    <div class="formulario__grupo-input">
-                        <input type="password" class="formulario__input" name="password" id="password" required>
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>                     
-                    <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.</p>
-                </div>
-                <!-- Grupo: Verificación -->
-                <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
-                    <label class="formulario__label">
-                        <fieldset>
-                            <span id="SuccessMessage" class="success">Has ingresado exitosamente al captcha.</span>
-                            <input type="text" id="UserCaptchaCode" class="CaptchaTxtField" placeholder='Ingrese Captcha - Sensible a mayúsculas'>
-                            <span id="WrongCaptchaError" class="error"></span>
-                            <div class='CaptchaWrap'>
-                              <div id="CaptchaImageCode" class="CaptchaTxtField">
-                                <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
-                              </div> 
-                              <input type="button" class="ReloadBtn" onclick='CreateCaptcha();'>
+            <div class="contenedor">
+                <div class="container"></div>
+                <form action="php/add_u.php" method="POST" id="formulario" name="formulario">
+
+                    <div class="row">
+                        <div class="col">
+                            <!-- Grupo: Usuario -->
+                            <div class="formulario__grupo" id="grupo__usuario">
+                                <label for="usuario" class="formulario__label">Usuario</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="usuario" id="usuario"
+                                        placeholder="Digite su usuario" required>
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El usuario tiene que ser de 8 a 16 dígitos y solo
+                                    puede contener numeros, letras y guion bajo.</p>
                             </div>
-                          </fieldset>
-                    </label>
-                </div>
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                        </div>
+                        <div class="col">
+                            <!-- Grupo: Contraseña -->
+                            <div class="formulario__grupo" id="grupo__password">
+                                <label for="password" class="formulario__label">Contraseña</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="password" class="formulario__input" name="password" id="password"
+                                        required>
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.
+                                </p>
+                            </div>
+                            <a href="recuperar.html" style="text-decoration: none;">
+                                <p class="text-right recuperar">¿Olvidaste tu contraseña?</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col">
+                            <!-- Grupo: Verificación -->
+                            <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
+                                <label class="formulario__label">
+                                    <fieldset>
+                                        <span id="SuccessMessage" class="success">Has ingresado exitosamente al
+                                            captcha.</span>
+                                        <input type="text" id="UserCaptchaCode" class="CaptchaTxtField"
+                                            placeholder='Ingrese Captcha - Sensible a mayúsculas'>
+                                        <span id="WrongCaptchaError" class="error"></span>
+                                        <div class='CaptchaWrap'>
+                                            <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                                <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+                                            </div>
+                                            <input type="button" class="ReloadBtn" onclick='CreateCaptcha();'>
+                                        </div>
+                                    </fieldset>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="formulario__mensaje" id="formulario__mensaje">
+                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el
+                                formulario correctamente. </p>
+                        </div>
+
+                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <input type="button" class="formulario__btn" value="comprobar" onclick="CheckCaptcha();">
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="subir" disabled onclick=""
+                            style="margin: 20px;">Iniciar
+                            Sesión</button>
+                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                            exitosamente!</p>
+                        <p class="text-center">No tienes una cuenta aun.</p>
+                    </div>
+                </form>
+                <div class="row justify-content-md-center">
+
+                    <a href="register.html" class="text-center">
+                        <button class="btn btn-success">Crea una Cuenta</button>
+                    </a>
+
                 </div>
 
-                <div class="formulario__grupo formulario__grupo-btn-enviar">
-                    <input type="button" class="formulario__btn" value="comprobar" onclick="CheckCaptcha();">
-                    <button type="submit"  class="formulario__btn" id="subir" disabled onclick="">Enviar</button>
-                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito" >Formulario enviado exitosamente!</p>
-                </div>
-                <div class="formulario__grupo">
-                    <a href="#" class="btn btn-outline-primary btn-sm">Reestablecer contraseña</a>
-                    <br>
-                    <br>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Registrarse</a>
-                </div>
-            </form>
-        </div> 
+            </div>
         </div>
     </div>
-          
+    </div>
+
     <!-- JS Propios -->
-    
+    <script src="js/script.js"></script>
     <!-- JS Font Awesome -->
-    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="js/fontawesome.min.js" crossorigin="anonymous"></script>
     <!-- JS Bootrstrap -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- JQuery -->
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='js/jquery.min.js'></script>
     <!-- Captcha -->
     <script src='js/captcha.js'></script>
+    <!-- Control de contraseñas -->
     <script src='js/visualizar.js'></script>
-    
-    
+    <!-- Medidor -->
+    <script src='js/medidor.js'></script>
 
 </body>
+
 </html>

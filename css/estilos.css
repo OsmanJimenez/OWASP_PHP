@@ -55,7 +55,7 @@ main {
 
 .formulario__input {
 	width: 100%;
-	background: #fff;
+	background: #E9EFF6;
 	border: 3px solid transparent;
 	border-radius: 3px;
 	height: 45px;
@@ -265,7 +265,6 @@ fieldset {
   
   input {
 	margin: 5px auto;
-	display: block;
   }
   
   label {
@@ -339,6 +338,11 @@ fieldset {
   
   .oculto {
 	display: none;
+  }
+
+  .recuperar{
+	  font-size: 12px;
+	  color: #414142;
   }
 
 /* ----- -----  Mediaqueries ----- ----- */
