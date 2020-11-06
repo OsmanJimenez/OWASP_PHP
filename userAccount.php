@@ -98,7 +98,7 @@ if(isset($_POST['signupSubmit'])){
 			$update = $user->update($data, $conditions);
 			
 			if($update){
-				$resetPassLink = 'http://localhost/OWASP/resetPassword.php?fp_code='.$uniqidStr;
+				$resetPassLink = 'http://localhost/OWASP_PHP/resetPassword.php?fp_code='.$uniqidStr;
 				
 				//get user details
 				$con['where'] = array('email'=>$_POST['email']);
@@ -119,7 +119,7 @@ if(isset($_POST['signupSubmit'])){
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				//additional headers
-				$headers .= 'From: ConfiguroWeb<sender@example.com>' . "\r\n";
+				$headers .= 'From: Atomix<sender@example.com>' . "\r\n";
 				//send email
 				mail($to,$subject,$mailContent,$headers);
 				

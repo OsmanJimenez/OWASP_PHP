@@ -24,97 +24,72 @@ if(!empty($sessData['status']['msg'])){
 </head>
 
 <body>
-    <div class="row justify-content-center align-items-center full">
-        <div class="col-sm registro">
-            <img class="" src="img/register_fondo.jpg" alt="">
-        </div>
-        <div class="col-sm">
-            <div class="contenedor">
-                <div class="container"></div>
-                <form action="php/add_u.php" method="POST" id="formulario" name="formulario">
+    <div class="row justify-content-md-center">
+        <div class="col">
+            <div class="contenedor" style="max-width:50%; margin-left:25%; ">
+                <div class="container">
+                    <?php echo !empty($statusMsg)?'<p class="'.$statusMsgType.'" style="display:inline">'.$statusMsg.'</p>':''; ?>
+                    <form action="userAccount.php" method="post">
 
-                    <div class="row">
-                        <div class="col">
-                            <!-- Grupo: Usuario -->
-                            <div class="formulario__grupo" id="grupo__email">
-                                    <label for="correo" class="formulario__label">Correo Electrónico</label>
-                                    <div class="formulario__grupo-input">
-                                        <input type="email" class="formulario__input" name="email" id="email"
-                                            placeholder="correo@correo.com">
-                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                    </div>
-                                    <p class="formulario__input-error">El correo solo puede contener letras, numeros,
-                                        puntos, guiones y guion bajo.</p>
-                                </div>
-                        </div>
-                        <div class="col">
-                            <!-- Grupo: Contraseña -->
-                            <div class="formulario__grupo" id="grupo__password">
-                                <label for="password" class="formulario__label">Contraseña</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="password" class="formulario__input" name="password" id="password"
-                                        required>
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.
-                                </p>
-                            </div>
-                            <a href="recuperar.html" style="text-decoration: none;">
-                                <p class="text-right recuperar">¿Olvidaste tu contraseña?</p>
-                            </a>
-                        </div>
-                    </div>
+                        <div class="row" id="formulario" name="formulario">
+                            <div class="justify-content-md-center">
 
-                    <div class="row justify-content-md-center">
-                        <div class="col">
-                            <!-- Grupo: Verificación -->
-                            <div class="formulario__grupo formulario__grupo-btn-enviar" id="grupo__terminos">
-                                <label class="formulario__label">
-                                    <fieldset>
-                                        <span id="SuccessMessage" class="success">Has ingresado exitosamente al
-                                            captcha.</span>
-                                        <input type="text" id="UserCaptchaCode" class="CaptchaTxtField"
-                                            placeholder='Ingrese Captcha - Sensible a mayúsculas'>
-                                        <span id="WrongCaptchaError" class="error"></span>
-                                        <div class='CaptchaWrap'>
-                                            <div id="CaptchaImageCode" class="CaptchaTxtField">
-                                                <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+                                <div class="row">
+                                    <div class="col">
+                                        <!-- Grupo: Contraseña -->
+                                        <div class="formulario__grupo" id="grupo__password">
+                                            <label for="password" class="formulario__label">Contraseña</label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="password" class="formulario__input" name="password"
+                                                    maxlength="18" id="password">
+
+                                                <i class="formulario__validacion-estado fas fa-times-circle">
+                                                    <span class="fas fa-eye" id="ver" onclick="mostrar()"></span>
+                                                </i>
                                             </div>
-                                            <input type="button" class="ReloadBtn" onclick='CreateCaptcha();'>
+                                            <p class="formulario__input-error">La contraseña debe tener mas de 12
+                                                caracteres.
+                                            </p>
+                                            <div class="nivelSeguridad">
+                                                <span id="nivelseguridad">bajo</span>
+                                                <div class="nivelesColores">
+                                                    <div class="spanNivelesColores"></div>
+                                                </div>
+
+                                                <div class="NivelesColores"></div>
+
+                                            </div>
                                         </div>
-                                    </fieldset>
-                                </label>
+                                    </div>
+                                    <div class="col">
+                                        <!-- Grupo: Contraseña 2 -->
+                                        <div class="formulario__grupo" id="grupo__confirm_password">
+
+                                            <label for="confirm_password" class="formulario__label">Repetir
+                                                Contraseña</label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="password" class="formulario__input" maxlength="18"
+                                                    name="confirm_password" id="confirm_password">
+                                                <i class="formulario__validacion-estado fas fa-times-circle">
+                                                    <span class="fas fa-eye" id="ver2" onclick="mostrar2()"></span>
+                                                </i>
+                                            </div>
+                                            <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row justify-content-md-center">
-                        <div class="formulario__mensaje" id="formulario__mensaje">
-                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el
-                                formulario correctamente. </p>
-                        </div>
-
-                        <div class="formulario__grupo formulario__grupo-btn-enviar">
-                            <input type="button" class="formulario__btn" value="comprobar" onclick="CheckCaptcha();">
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" id="subir" disabled onclick=""
-                            style="margin: 20px;" name="loginSubmit">Iniciar
-                            Sesión</button>
-                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
-                            exitosamente!</p>
-                        <p class="text-center">No tienes una cuenta aun.</p>
-                    </div>
-                </form>
-                <div class="row justify-content-md-center">
-
-                    <a href="register.html" class="text-center">
-                        <button class="btn btn-success">Crea una Cuenta</button>
-                    </a>
-
+                            <div class="row justify-content-md-center">
+                                <input type="hidden" style="display:none" name="fp_code" value="<?php echo $_REQUEST['fp_code']; ?>"/>
+                                <button type="submit" class="btn btn-primary" onclick="" style="margin: 20px;"
+                                name="resetSubmit">Restablecer Contraseña</button>
+                                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                                    exitosamente!</p>
+                            </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -128,8 +103,6 @@ if(!empty($sessData['status']['msg'])){
     <script src="js/bootstrap.min.js"></script>
     <!-- JQuery -->
     <script src='js/jquery.min.js'></script>
-    <!-- Captcha -->
-    <script src='js/captcha.js'></script>
     <!-- Control de contraseñas -->
     <script src='js/visualizar.js'></script>
     <!-- Medidor -->
