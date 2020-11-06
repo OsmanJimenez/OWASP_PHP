@@ -36,6 +36,8 @@ if(!empty($sessData['status']['msg'])){
         <div class="col-sm">
             <div class="contenedor">
                 <div class="container"></div>
+                <?php echo !empty($statusMsg)?'<p class="'.$statusMsgType.'" style="display:inline">'.$statusMsg.'</p>':''; ?>
+
 		<form action="userAccount.php" method="post">
 
                     <div class="row">
