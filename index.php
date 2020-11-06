@@ -13,6 +13,8 @@ if(!empty($sessData['status']['msg'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"  href="img/favicon.ico">
     <!-- CSS Normalize -->
     <link rel="stylesheet" href="css/normalize.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -37,7 +39,6 @@ if(!empty($sessData['status']['msg'])){
             <div class="contenedor">
                 <div class="container"></div>
                 <?php echo !empty($statusMsg)?'<p class="'.$statusMsgType.'" style="display:inline">'.$statusMsg.'</p>':''; ?>
-
 		<form action="userAccount.php" method="post">
 
                     <div class="row">
