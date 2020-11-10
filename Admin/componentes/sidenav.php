@@ -11,24 +11,28 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
+            <?php if($sessData['permits']!="1111" && $sessData['permits']!="1" ):?>
+            <li class="nav-item">  
+              <a class="nav-link active" href="index.php">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Agregar Publicación</span>
               </a>
             </li>
+          <?php endif ?>
             <li class="nav-item">
-              <a class="nav-link" href="examples/tables.html">
+              <a class="nav-link" href="publication.php">
                 <i class="ni ni-planet text-orange"></i>
                 <span class="nav-link-text">Listar Publicaciones</span>
               </a>
             </li>
+            <?php if ($sessData['permits']=="1111"): ?>
             <li class="nav-item">
-              <a class="nav-link" href="examples/map.html">
+              <a class="nav-link" href="config.php">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">Configuración</span>
               </a>
             </li>
+            <?php endif ?>
             <li class="nav-item">
               <a class="nav-link" href="perfil.php">
                 <i class="ni ni-single-02 text-yellow"></i>

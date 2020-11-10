@@ -46,12 +46,21 @@ if(!empty($sessData['status']['msg'])){
 <body>
   <?php
           include '../user.php';
+          include 'forum.php';
           $user = new User();
+          $forum= new Forum();
           $conditions['where'] = array(
               'id' => $sessData['userID'],
           );
           $conditions['return_type'] = 'single';
           $userData = $user->getRows($conditions);
+          $conditionsf['where']= array(
+              'forum.user'=>'users.id',
+              'users.id'=>$sessData['userID']
+          );
+          $conditionsf['return_type']='count';
+          $forumData= $forum->getRows($conditionsf);
+         
   ?>
   <!-- Sidenav -->
   <?php
@@ -100,8 +109,8 @@ if(!empty($sessData['status']['msg'])){
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                <a href="#" class="btn btn-sm btn-info  mr-4 ">Conectar</a>
-                <a href="#" class="btn btn-sm btn-default float-right">Mensaje</a>
+                <a href="#" class="btn btn-sm btn-info  mr-4 ">Nueva</a>
+                <a href="#" class="btn btn-sm btn-default float-right">Todas</a>
               </div>
             </div>
             <div class="card-body pt-0">
@@ -109,16 +118,12 @@ if(!empty($sessData['status']['msg'])){
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center">
                     <div>
-                      <span class="heading">22</span>
-                      <span class="description">Amigos</span>
                     </div>
                     <div>
-                      <span class="heading">10</span>
+                      <span class="heading"><?php echo $forumData ?></span>
                       <span class="description">Publicaciones</span>
                     </div>
                     <div>
-                      <span class="heading">89</span>
-                      <span class="description">Comentarios</span>
                     </div>
                   </div>
                 </div>
@@ -195,10 +200,14 @@ if(!empty($sessData['status']['msg'])){
                       </div>
                     </div>
                   </div>
-                  
+                  <div class="col-12 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Guardar</a>
+                </div>
+              </form>
                 </div>
                 <hr class="my-4" />
                 <!-- Description -->
+                <form>
                 <h6 class="heading-small text-muted mb-4">Cambio de Contraseña</h6>
                 <div class="pl-lg-4">
                 <div class="row">
