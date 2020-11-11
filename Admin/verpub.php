@@ -43,6 +43,14 @@ if(!empty($sessData['status']['msg'])){
   <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+  <!-- include libraries(jQuery, bootstrap) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- include summernote css/js -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 
 <body>
@@ -109,6 +117,7 @@ if(!empty($sessData['status']['msg'])){
                 <br>
                 <br>
                 <input type="text-area" required name="message" placeholder="description" value="<?php echo $forumData[0]['entry']; ?>">
+                <textarea id="summernote" name="message" placeholder="description" value="<?php echo $forumData[0]['entry']; ?>"></textarea>
                 <br>
                 <br>
                 <button name="uptadeSubmit" class="btn btn-primary">Guardar</button>
@@ -153,6 +162,12 @@ if(!empty($sessData['status']['msg'])){
   <script src="assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
+  <!-- SummerNote JS -->
+  <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+  </script>
 </body>
 
 </html>
