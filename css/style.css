@@ -1,0 +1,38 @@
+ body{
+     background-color: #E8EAEE;
+ }
+ 
+ .centro{
+    margin-top: 1%;
+    margin-bottom: 1px;
+ }
+
+ .card{
+     border-radius: 8px;
+ }
+
+ .card-body{
+     margin: 1% 4% auto 2%;
+ }
+
+ .card-title{
+     color: #000;
+ }
+
+ .card-text{
+    color: #718797;
+ }
+
+ .bordes img{
+     margin: 2%;
+     border-radius: 8px;
+ }
+
+
+ /*Post*/
+
+.margen img{
+    height: 300px;
+    margin-top: 1%;
+    border-radius: 10px;
+}
