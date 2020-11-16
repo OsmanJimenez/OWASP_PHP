@@ -86,9 +86,6 @@ if(!empty($sessData['status']['msg'])){
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <?php if ($sessData['permits']!='1'): ?>
-              <a href="index.php" class="btn btn-sm btn-neutral">Nueva publicación</a>
-            <?php endif ?>
             </div>
           </div>
         </div>
@@ -101,23 +98,19 @@ if(!empty($sessData['status']['msg'])){
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Entradas</h3>
+              <h3 class="mb-0">Registros</h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" class="sort" data-sort="name">Nombre</th>
+                    <th scope="col" class="sort" data-sort="name">Fecha</th>
                     <th scope="col" class="sort" data-sort="budget">Detalles</th>
-                    <th scope="col" class="sort" data-sort="status">Publicada</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col" class="sort" data-sort="completion">Modificada</th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <?php 
-                include 'list.php';
+                include 'listc.php';
                 ?>
               </table>
             </div>

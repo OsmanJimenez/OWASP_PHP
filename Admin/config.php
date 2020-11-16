@@ -7,9 +7,9 @@ if(!empty($sessData['status']['msg'])){
     unset($_SESSION['sessData']['status']);
 }else if (empty($sessData)) {
   header("Location:../");
+}else if(($sessData['permits'])!='1111'){
+  header("Location:index.php");
 }
-
-
 ?>
 <!--
 =========================================================
@@ -87,7 +87,6 @@ if(!empty($sessData['status']['msg'])){
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="index.php" class="btn btn-sm btn-neutral">Nueva publicación</a>
             </div>
           </div>
         </div>

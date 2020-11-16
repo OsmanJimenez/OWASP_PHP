@@ -1,3 +1,17 @@
+<?php 
+include 'log.php';
+$log= new Log();
+$conditions['where'] = array(
+              'user' => $sessData['userID']
+          );
+$conditions['order_by']='date desc';
+$conditions['limit']='5';
+$conditions['return_type'] = 'all';
+          $consult = $log->getRows($conditions);
+
+ 
+ ?>
+
 <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,9 +53,10 @@
               <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
                 <!-- Dropdown header -->
                 <div class="px-3 py-3">
-                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">13</strong> notificaciones.</h6>
+                  <h6 class="text-sm text-muted m-0">Tu tienes <strong class="text-primary">5</strong> notificaciones.</h6>
                 </div>
                 <!-- List group -->
+                <?php      foreach ($consult as $eve) { ?>
                 <div class="list-group list-group-flush">
                   <a href="#!" class="list-group-item list-group-item-action">
                     <div class="row align-items-center">
@@ -55,92 +70,17 @@
                             <h4 class="mb-0 text-sm"><?php echo $userData['first_name'].' '.$userData['last_name']; ?></h4>
                           </div>
                           <div class="text-right text-muted">
-                            <small>2 hrs ago</small>
+                            <small><?php echo $eve['date']; ?></small>
                           </div>
                         </div>
-                        <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#!" class="list-group-item list-group-item-action">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <!-- Avatar -->
-                        <img alt="Image placeholder" src="assets/img/theme/team-2.jpg" class="avatar rounded-circle">
-                      </div>
-                      <div class="col ml--2">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h4 class="mb-0 text-sm"><?php echo $userData['first_name'].' '.$userData['last_name']; ?></h4>
-                          </div>
-                          <div class="text-right text-muted">
-                            <small>3 hrs ago</small>
-                          </div>
-                        </div>
-                        <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#!" class="list-group-item list-group-item-action">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <!-- Avatar -->
-                        <img alt="Image placeholder" src="assets/img/theme/team-3.jpg" class="avatar rounded-circle">
-                      </div>
-                      <div class="col ml--2">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h4 class="mb-0 text-sm"><?php echo $userData['first_name'].' '.$userData['last_name']; ?></h4>
-                          </div>
-                          <div class="text-right text-muted">
-                            <small>5 hrs ago</small>
-                          </div>
-                        </div>
-                        <p class="text-sm mb-0">Your posts have been liked a lot.</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#!" class="list-group-item list-group-item-action">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <!-- Avatar -->
-                        <img alt="Image placeholder" src="assets/img/theme/team-4.png" class="avatar rounded-circle">
-                      </div>
-                      <div class="col ml--2">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h4 class="mb-0 text-sm"><?php echo $userData['first_name'].' '.$userData['last_name']; ?></h4>
-                          </div>
-                          <div class="text-right text-muted">
-                            <small>2 hrs ago</small>
-                          </div>
-                        </div>
-                        <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#!" class="list-group-item list-group-item-action">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <!-- Avatar -->
-                        <img alt="Image placeholder" src="assets/img/theme/team-5.jpg" class="avatar rounded-circle">
-                      </div>
-                      <div class="col ml--2">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h4 class="mb-0 text-sm"><?php echo $userData['first_name'].' '.$userData['last_name']; ?></h4>
-                          </div>
-                          <div class="text-right text-muted">
-                            <small>3 hrs ago</small>
-                          </div>
-                        </div>
-                        <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
+                        <p class="text-sm mb-0"><?php echo $eve['des']; ?></p>
                       </div>
                     </div>
                   </a>
                 </div>
+              <?php } ?>
                 <!-- View all -->
-                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+                <a href="cambios.php" class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -205,15 +145,15 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Bienvenido!</h6>
                 </div>
-                <a href="#!" class="dropdown-item">
+                <a href="perfil.php" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>Mi perfil</span>
                 </a>
-                <a href="#!" class="dropdown-item">
+                <a href="config.php" class="dropdown-item">
                   <i class="ni ni-settings-gear-65"></i>
                   <span>Configuración</span>
                 </a>
-                <a href="#!" class="dropdown-item">
+                <a href="cambios.php" class="dropdown-item">
                   <i class="ni ni-calendar-grid-58"></i>
                   <span>Log de Cambios</span>
                 </a>

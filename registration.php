@@ -180,7 +180,8 @@ if(!empty($sessData['status']['msg'])){
                                 </div>
 
                                 <div class="formulario__grupo formulario__grupo-btn-enviar">
-                                    <button type="submit" class="formulario__btn" id="enviar" name="signupSubmit"
+                                     <input type="button" class="formulario__btn" value="comprobar" onclick="CheckCaptcha();">
+                                    <button type="submit" disabled class="formulario__btn" id="subir" name="signupSubmit"
                                         onclick="CheckCaptcha();">Enviar</button>
                                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario
                                         enviado exitosamente!</p>

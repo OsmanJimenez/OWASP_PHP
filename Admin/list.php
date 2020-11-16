@@ -29,16 +29,16 @@ $url=$forum->encode($col['id']);
                     </td>
                     <td class="text-center">
                       <a><?php echo $col['modified']; ?></a>
-                      <?php if($per!='1' && $per!='1111' ){ ?>  
+                      <?php if($per!='1' ){ ?>  
                       <div class="dropdown">
                         <a class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="fas fa-ellipsis-v"></i>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <?php if($per=="11" || $per=="111"){ ?>
+                          <?php if($per=="11" || $per=="1111"){ ?>
                           <a class="dropdown-item" href="verpub.php?m=<?php echo $url; ?>">Editar</a>
-                          <?php } if($per=="111"){ ?>
+                          <?php } if($per=="1111" || $per=="111" ){ ?>
                           <a class="dropdown-item" href="entry.php?del=<?php echo $url; ?>">Eliminar</a>
                         <?php }} ?>
                         </div>

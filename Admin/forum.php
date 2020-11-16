@@ -27,7 +27,7 @@ class Forum{
      */
     public function getRows($conditions = array()){
         $sql = 'SELECT ';
-        $sql .= array_key_exists("select",$conditions)?$conditions['select']:'forum.id,forum.title,forum.entry,users.first_name,forum.created,forum.modified';
+        $sql .= array_key_exists("select",$conditions)?$conditions['select']:'forum.id,forum.title,forum.entry,users.first_name,forum.created,forum.img,forum.modified';
         $sql .= ' FROM '.$this->forumTbl.",".$this->userTbl;
         if(array_key_exists("where",$conditions)){
             $sql .= ' WHERE ';
@@ -138,7 +138,7 @@ class Forum{
 
             //update data
             $update = $this->db->query($query);
-            var_dump($query);
+          
             return $update?true:false;
         }else{
             return false;

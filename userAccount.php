@@ -3,7 +3,9 @@
 session_start();
 //load and initialize user class
 include 'user.php';
+include 'Admin/log.php';
 $user = new User();
+$log  = new Log();
 if(isset($_POST['signupSubmit'])){
 	//check whether user details are empty
     if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])){
@@ -77,7 +79,7 @@ if(isset($_POST['signupSubmit'])){
 	//store login status into the session
     $_SESSION['sessData'] = $sessData;
 	//redirect to the home page
-    header("Location:index.php");
+    header("Location:Admin/index.php");
 }elseif(isset($_POST['forgotSubmit'])){
 	//check whether email is empty
     if(!empty($_POST['email'])){
@@ -157,9 +159,99 @@ if(isset($_POST['signupSubmit'])){
     $update = $user->update($data, $conditions);
 
     if($update){
+        $nu=$deco->decode('$atc');
+        $descr='Se han actualizado los permisos del usuario';
+                    $data=array(
+                        'des'=> $descr,
+                        'user'=>$_SESSION['sessData']['userID']
+                    );
+                    $add=$log->insert($data);
+                    if ($add) {
+
       header("Location:Admin/config.php");
+  }
     }
-}elseif (isset($_GET['dtc'])) {
+}elseif (isset($_POST['pefSubmit'])) {
+    include 'Admin/forum.php';
+    $conditions = array(
+                'id' => $_SESSION['sessData']['userID']
+            );
+    $data= array(
+                'first_name'  => $_POST['name'],
+                'last_name'   => $_POST['ape'],
+                'email'       => $_POST['email'],
+                'phone'       => $_POST['phone']  
+            );
+    
+    $update = $user->update($data, $conditions);
+
+    if($update){
+        $descr='Se ha actualizado el perfil de usuario';
+                    $data=array(
+                        'des'=> $descr,
+                        'user'=>$_SESSION['sessData']['userID']
+                    );
+                    $add=$log->insert($data);
+                    var_dump($add);
+                    if ($add) {
+
+      header("Location:Admin/perfil.php");
+  }
+    }
+}elseif (isset($_POST['passSubmit'])) {
+    include 'Admin/forum.php';
+
+    if($_POST['nivel']!='bajo'){
+
+
+    $conditions['where'] = array(
+                'id' => $_SESSION['sessData']['userID'],
+                'password' =>  md5($_POST['pass1'])
+            );
+    $consult=$user->getRows($conditions);
+    if($consult){
+            $conditions2 = array(
+                'id' => $_SESSION['sessData']['userID']
+            );
+    $data2= array(
+                'password'  => md5($_POST['pass2'])  
+            );
+    
+    $update = $user->update($data2, $conditions2);
+ 
+        if($update){
+        $descr='Se ha actualizado la contraseña';
+                    $data=array(
+                        'des'=> $descr,
+                        'user'=>$_SESSION['sessData']['userID']
+                    );
+                    $add=$log->insert($data);
+                    if ($add) {
+        //send reset password email
+                $to = $consult['0']['email'];
+                $subject = "Cambio de Contraseña";
+                $mailContent = 'Estimad@ '.$consult['0']['first_name'].', 
+                <br/><br/>Recientemente se restablecio la contraseña de su cuenta. Si no fue usted, por favor cambiar su contraseña para no perder el acceso a su cuenta.
+                <br/><br/>Saludos,
+                <br/>No considere este mensaje como spam, atentamente 
+                <br/>Osman Jimenez';                ;
+                
+                //set content-type header for sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                //additional headers
+                $headers .= 'From: Atomix<sender@example.com>' . "\r\n";
+                //send email
+                mail($to,$subject,$mailContent,$headers);
+     header("Location:Admin/perfil.php");
+  }
+    
+
+    }}
+
+}
+
+} elseif (isset($_GET['dtc'])) {
     include 'Admin/forum.php';
     $deco=new Forum();
     $dtc=substr("".$_GET['dtc'], 4, -4);
@@ -197,6 +289,12 @@ if(isset($_POST['signupSubmit'])){
 				if($update){
 					$sessData['status']['type'] = 'success';
                     $sessData['status']['msg'] = 'La contraseña de su cuenta se ha restablecido correctamente. Inicia sesión con tu nueva contraseña.';
+                    $descr='Se ha cambiado recientemente la contraseña ';
+                    $logdata=array(
+                        'des'=> $descr,
+                        'user'=>$prevUser['id'],
+                    );
+                    $add=$log->insert($logdata);
 				}else{
 					$sessData['status']['type'] = 'error';
 					$sessData['status']['msg'] = 'Se produjo algún problema, por favor intente nuevamente.';

@@ -108,7 +108,7 @@ if(!empty($sessData['status']['msg'])){
                         </div>
 
                         <button type="submit" class="btn btn-primary" id="subir" onclick=""
-                            style="margin: 20px;" name="loginSubmit">Iniciar
+                            style="margin: 20px;" disabled name="loginSubmit">Iniciar
                             Sesión</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
                             exitosamente!</p>

@@ -41,6 +41,7 @@ if(!empty($sessData['status']['msg'])){
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="../css/estilos2.css">
 </head>
 
 <body>
@@ -158,14 +159,14 @@ if(!empty($sessData['status']['msg'])){
               </div>
             </div>
             <div class="card-body">
-              <form>
+              <form method="POST" action="../userAccount.php">
                 <h6 class="heading-small text-muted mb-4">Información</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Correo Electronico</label>
-                        <input type="email" id="input-email" class="form-control" placeholder="jesse@example.com"
+                        <input type="email" id="input-email" required name="email" class="form-control" placeholder="jesse@example.com"
                         value="<?php echo $userData['email']; ?>">
                       </div>
                     </div>
@@ -173,15 +174,15 @@ if(!empty($sessData['status']['msg'])){
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">Nombre</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="First name"
+                        <label class="form-control-label" required for="input-first-name">Nombre</label>
+                        <input type="text" name="name" required minlength="5" id="input-first-name" class="form-control" pattern="[a-zA-Z ]{5}"   required title="Compruebe el nombre" placeholder="First name"
                          value="<?php echo $userData['first_name']; ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Apellido</label>
-                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name" 
+                        <input type="text"  name="ape" required  pattern="[a-zA-Z ]{5}"   required title="Compruebe el apellido " class="form-control" placeholder="Last name" 
                         value="<?php echo $userData['last_name']; ?>">
                       </div>
                     </div>
@@ -194,41 +195,67 @@ if(!empty($sessData['status']['msg'])){
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="phone">Telefono</label>
-                        <input id="phone" class="form-control" placeholder="Home Address" 
+                        <label class="form-control-label"  for="phone">Telefono</label>
+                        <input id="phone" type="number" class="form-control"required pattern="{7}[0-9]"   required title="Compruebe el Telefono"  required name="phone" placeholder="Home Address" 
                         value="<?php echo $userData['phone']; ?>">
                       </div>
                     </div>
                   </div>
                   <div class="col-12 text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Guardar</a>
+                    <button type="submit" name="pefSubmit" class="btn btn-sm btn-primary">Guardar</button>
                 </div>
               </form>
                 </div>
                 <hr class="my-4" />
                 <!-- Description -->
-                <form>
+                 <div class="container" id="formulario">
+                <form method="POST" action="../userAccount.php">
                 <h6 class="heading-small text-muted mb-4">Cambio de Contraseña</h6>
                 <div class="pl-lg-4">
                 <div class="row">
                     <div class="col-lg-6">
-                      <div class="form-group">
+                      <div class="formulario__grupo" id="grupo__password">
+                      <div class="formulario__grupo-input">
                         <label class="form-control-label" for="input-first-name">Contraseña Actual</label>
-                        <input type="password" id="input-first-name" class="form-control">
+                        <input type="password" name="pass1" id="password2" required  class="formulario__input">
+                          <i class="formulario__validacion-estado">
+                              <span class="fas fa-eye" id="ver2" onclick="mostrar2()"></span>
+                          </i>
                       </div>
+  
+                    </div>
                     </div>
                     <div class="col-lg-6">
-                      <div class="form-group">
+                      <div class="formulario__grupo" id="grupo__password">
+                         <div class="formulario__grupo-input">
                         <label class="form-control-label" for="input-last-name">Nueva Contraseña</label>
-                        <input type="password" id="input-last-name" class="form-control">
+                        <input type="password" minlength="12" name="pass2"id="password" required  class="formulario__input">
+                                                  <i class="formulario__validacion-estado ">
+                              <span class="fas fa-eye" id="ver" onclick="mostrar()"></span>
+                          </i>
                       </div>
+                      <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.
+                                    </p>
+                                    <div class="nivelSeguridad">
+                                        <span id="nivelseguridad">bajo</span>
+                                        <input type="hidden" id="nivels" name="nivel">
+                                        <div class="nivelesColores">
+                                            <div class="spanNivelesColores"></div>
+                                        </div>
+
+                                        <div class="NivelesColores"></div>
+
+                                    </div>
+                    </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-12 text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Guardar</a>
+                  <button name="passSubmit" class="btn btn-sm btn-primary">Guardar</button>
                 </div>
               </form>
+            </div>
+   
             </div>
           </div>
         </div>
@@ -275,6 +302,17 @@ if(!empty($sessData['status']['msg'])){
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
+      <!-- JS Propios -->
+      <script src="../js/fontawesome.min.js" crossorigin="anonymous"></script>
+    <!-- Control de contraseñas -->
+    <script src='../js/visualizar.js'></script>
+    <!-- Medidor -->
+    <script src='../js/medidor.js'></script>
+    <script type="text/javascript"> 
+      document.getElementById('password').onkeypress = function() { 
+      document.getElementById('nivels').value = document.getElementById('nivelseguridad').innerHTML; 
+} 
+</script> 
 </body>
 
 </html>

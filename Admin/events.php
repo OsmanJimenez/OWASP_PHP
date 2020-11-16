@@ -11,9 +11,7 @@ if(!empty($sessData['status']['msg'])){
     header("Location:../");
 }
 include 'forum.php';
-include 'log.php';
 $forum = new Forum();
-$log   = new Log();
 if(isset($_POST['entrySubmit'])){
 				//insert user data in the database
 $img_pro= $_FILES["img"]["name"];
@@ -31,16 +29,9 @@ copy($ruta,$destino);
               
 				//set status based on data insert
                 if($insert){
-                	$descr='Se ha publicado exitosamente la entrada titulada '.$_POST['title'];
-   					$logdata=array(
-   						'des'=> $descr,
-   						'user'=>$sessData['userID'],
-   					);
-   					$add=$log->insert($logdata);
                     $sessData['status']['type'] = 'success';
                     $sessData['status']['msg'] = 'Te has registrado correctamente, inicia sesión con tus credenciales.';
-                    if($add){
-					header("Location:publication.php");}
+                    header("Location:publication.php");
                 }else{
                     $sessData['status']['type'] = 'error';
                     $sessData['status']['msg'] = 'Se produjo algún problema, por favor intente nuevamente.';
@@ -52,14 +43,6 @@ copy($ruta,$destino);
     $conditions['where']= array('user' =>$_GET['del'] );
     $con=$forum->decode($conditions['where']['user']);
     $del=$forum->delete($conditions,$con);
-    if($del){
-    	$descr='Se ha eliminado exitosamente una entrada';
-   					$logdata=array(
-   						'des'=> $descr,
-   						'user'=>$sessData['userID'],
-   					);
-   					$add=$log->insert($logdata);
-    }
 }
 
 }elseif(isset($_POST['forgotSubmit'])){
@@ -148,21 +131,7 @@ copy($ruta,$destino);
 			);
 			$update = $forum->update($data, $conditions);
 			if ($update) {
-				$descr='Se ha actualizado exitosamente la entrada titulada '.$_POST['title'];
-   					$logdata=array(
-   						'des'=> $descr,
-   						'user'=>$sessData['userID'],
-   					);
-   					$add=$log->insert($logdata);
-   					if($add){
-   						$descr='El usuario'.$sessData .'ha actualizado exitosamente la entrada titulada '.$_POST['title'];
-   					$logdata=array(
-   						'des'=> $descr,
-   						'user'=>'0',
-   					);
-   					$add=$log->insert($logdata);
 				 header("Location:publication.php");
-				}
 			}
 		}
 		}elseif (empty($_FILES['img']['name'])) {
@@ -180,15 +149,7 @@ copy($ruta,$destino);
 			echo "No hay";
 			$update = $forum->update($data, $conditions);
 			if ($update) {
-				$descr='Se ha publicado exitosamente la entrada titulada '.$_POST['title'];
-   					$logdata=array(
-   						'des'=> $descr,
-   						'user'=>$sessData['userID'],
-   					);
-   					$add=$log->insert($logdata);
-   					if($add){
 				 header("Location:publication.php");
-				}
 			}
 	}
 	}

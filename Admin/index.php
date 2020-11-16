@@ -44,6 +44,11 @@ if(!empty($sessData['status']['msg'])){
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 
 <body>
@@ -95,7 +100,7 @@ if(!empty($sessData['status']['msg'])){
     <div class="container-fluid mt--6">
       <div class="row">
             <div class="card">
-              <form action="entry.php" method="post">
+              <form action="entry.php" method="post" enctype="multipart/form-data">
               <div class="card-body">
                 <h5 class="card-title">Nueva entrada</h5>
                 <br>
@@ -103,8 +108,10 @@ if(!empty($sessData['status']['msg'])){
                 <input type="text" name="title" placeholder="Digite un titulo"> 
                 <br>
                 <br>
-                <input type="text-area" name="message" placeholder="description">
+                <textarea id="summernote" required name="message" placeholder="Digite un titulo"></textarea>
                 <br>
+                <h2>Imagen</h2>
+                <input type="file" name="img" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
                 <br>
                 <button name="entrySubmit" class="btn btn-primary">Guardar</button>
               </div>
@@ -123,7 +130,7 @@ if(!empty($sessData['status']['msg'])){
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+
   <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
@@ -133,6 +140,26 @@ if(!empty($sessData['status']['msg'])){
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
+    <!-- SummerNote JS -->
+  <script>
+  $('#summernote').summernote({
+    codeviewFilter: false,
+    codeviewIframeFilter: true,
+    height: 300,
+    width:900,
+    minHeight: null,       
+    maxHeight: null,       
+    focus: true,                 
+    toolbar: [
+      // [groupName, [list of button]]
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']]
+    ]
+  })
+  </script>
 </body>
 
 </html>

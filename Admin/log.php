@@ -1,12 +1,14 @@
 <?php
 
-class User{
+class Log{
     private $dbHost     = "localhost";
     private $dbUsername = "root";
     private $dbPassword = "";
     private $dbName     = "prueba";
+    private $forumTbl   = "forum";
+    private $evenTbl    = "events";
     private $userTbl    = "users";
-    
+  
     public function __construct(){
         if(!isset($this->db)){
             // Connect to the database
@@ -27,13 +29,13 @@ class User{
     public function getRows($conditions = array()){
         $sql = 'SELECT ';
         $sql .= array_key_exists("select",$conditions)?$conditions['select']:'*';
-        $sql .= ' FROM '.$this->userTbl;
+        $sql .= ' FROM '.$this->evenTbl;
         if(array_key_exists("where",$conditions)){
             $sql .= ' WHERE ';
             $i = 0;
             foreach($conditions['where'] as $key => $value){
                 $pre = ($i > 0)?' AND ':'';
-                $sql .= $pre.$key." = '".$value."'";
+                $sql .= $pre.$key." = ".$value."";
                 $i++;
             }
         }
@@ -68,9 +70,9 @@ class User{
                 }
             }
         }
-        
-        return !empty($data)?$data:false;
+       return !empty($data)?$data:false;
     }
+    
     
     /*
      * Insert data into the database
@@ -83,10 +85,7 @@ class User{
             $values  = '';
             $i = 0;
             if(!array_key_exists('created',$data)){
-                $data['created'] = date("Y-m-d H:i:s");
-            }
-            if(!array_key_exists('modified',$data)){
-                $data['modified'] = date("Y-m-d H:i:s");
+                $data['date'] = date("Y-m-d H:i:s");
             }
             foreach($data as $key=>$val){
                 $pre = ($i > 0)?', ':'';
@@ -94,14 +93,15 @@ class User{
                 $values  .= $pre."'".$val."'";
                 $i++;
             }
-            $query = "INSERT INTO ".$this->userTbl." (".$columns.") VALUES (".$values.")";
-            $insert = $this->db->query($query);
-            return $insert?$this->db->insert_id:false;
+            $query = "INSERT INTO ".$this->evenTbl." (".$columns.") VALUES (".$values.")";
+           $insert = $this->db->query($query);
+           var_dump($insert);
+          return $insert?true:false;
         }else{
             return false;
         }
     }
-    
+   
     /*
      * Update data into the database
      * @param string name of the table
@@ -131,38 +131,45 @@ class User{
             }
             
             //prepare sql query
-            $query = "UPDATE ".$this->userTbl." SET ".$cols_vals." WHERE ".$whereSql;
+            $query = "UPDATE ".$this->forumTbl." SET ".$cols_vals." WHERE ".$whereSql;
 
+            //update data
+            $update = $this->db->query($query);
+          
+            return $update?true:false;
+        }else{
+            return false;
+        }
+    }
+        public function delete($data,$us){
+            if(!empty($data)){
+            $cols_vals = '';
+            $i = 0;
+            //prepare where conditions
+          
+            $whereSql = 'where id='.$us;
+           
+            $ci = 0;
+            //prepare sql query
+          
+            $query = "Delete from ".$this->forumTbl." ".$whereSql;
+             
             //update data
             $update = $this->db->query($query);
             return $update?true:false;
         }else{
             return false;
         }
-    }
-     public function delete($conditions){
-        if(!empty($conditions)){
-            //prepare columns and values sql
-            $cols_vals = '';
-            $i = 0;
-            //prepare where conditions
-            $whereSql = '';
-            $ci = 0;
-            foreach($conditions as $key => $value){
-                $pre = ($ci > 0)?' AND ':'';
-                $whereSql .= $pre.$key." = '".$value."'";
-                $ci++;
-            }
-            
-            //prepare sql query
-            $query = "Delete from ".$this->userTbl." WHERE ".$whereSql;
-            
-            //delete data
-            $delete = $this->db->query($query);
-            return $delete?true:false;
-        }else{
-            return false;
+
+
         }
-    }
+        public function encode($data) {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+        }
+
+        public function decode($data) {
+        return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+        }
 
 }
+

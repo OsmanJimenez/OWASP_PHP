@@ -43,14 +43,11 @@ if(!empty($sessData['status']['msg'])){
   <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
-  <!-- include libraries(jQuery, bootstrap) -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <!-- include summernote css/js -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  
 </head>
 
 <body>
@@ -108,18 +105,19 @@ if(!empty($sessData['status']['msg'])){
     <div class="container-fluid mt--6">
       <div class="row">
             <div class="card">
-              <form action="entry.php" method="post">
+              <form action="entry.php" method="post" enctype="multipart/form-data">
               <div class="card-body">
                 <h5 class="card-title">Editar entrada</h5>
                 <br>
+                <h4 class="card-title">Titulo</h4>
                 <input type="hidden" name="id" value="<?php echo $_GET['m'] ?>">
                 <input type="text" required name="title" placeholder="Digite un titulo" value="<?php echo $forumData[0]['title']; ?>"> 
                 <br>
                 <br>
-                <input type="text-area" required name="message" placeholder="description" value="<?php echo $forumData[0]['entry']; ?>">
-                <textarea id="summernote" name="message" placeholder="description" value="<?php echo $forumData[0]['entry']; ?>"></textarea>
+                <textarea id="summernote" required name="message" placeholder="Digite un titulo"><?php echo $forumData[0]['entry']; ?></textarea>
                 <br>
-                <br>
+                <h2>Imagen</h2>
+                <input type="file" name="img" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
                 <button name="uptadeSubmit" class="btn btn-primary">Guardar</button>
               </div>
               </form>
@@ -154,8 +152,8 @@ if(!empty($sessData['status']['msg'])){
     </div>
   </div>
   <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+  <!-- Core 
+  <script src="assets/vendor/jquery/dist/jquery.min.js"></script> -->
   <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
@@ -164,9 +162,23 @@ if(!empty($sessData['status']['msg'])){
   <script src="assets/js/argon.js?v=1.2.0"></script>
   <!-- SummerNote JS -->
   <script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
+  $('#summernote').summernote({
+    codeviewFilter: false,
+    codeviewIframeFilter: true,
+    height: 300,
+    width:900,
+    minHeight: null,       
+    maxHeight: null,       
+    focus: true,                 
+    toolbar: [
+      // [groupName, [list of button]]
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']]
+    ]
+  })
   </script>
 </body>
 
