@@ -71,13 +71,14 @@ if(!empty($sessData['status']['msg'])){
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
-    
+
     <?php
       include 'componentes/topnav.php';
     ?>
 
     <!-- Header -->
-    <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <div class="header pb-6 d-flex align-items-center"
+      style="min-height: 500px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
       <!-- Mask -->
       <span class="mask bg-gradient-default opacity-8"></span>
       <!-- Header container -->
@@ -85,7 +86,8 @@ if(!empty($sessData['status']['msg'])){
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hola <?php echo $userData['first_name']; ?></h1>
-            <p class="text-white mt-0 mb-5">Esta es tu página de perfil. Puede ver el progreso que ha logrado con su trabajo y administrar sus proyectos o tareas asignadas</p>
+            <p class="text-white mt-0 mb-5">Esta es tu página de perfil. Puede ver el progreso que ha logrado con su
+              trabajo y administrar sus proyectos o tareas asignadas</p>
             <a href="#!" class="btn btn-neutral">Editar perfil</a>
           </div>
         </div>
@@ -131,7 +133,8 @@ if(!empty($sessData['status']['msg'])){
               </div>
               <div class="text-center">
                 <h5 class="h3">
-                <?php echo $userData['first_name'].' '.$userData['last_name']; ?><span class="font-weight-light">, 27</span>
+                  <?php echo $userData['first_name'].' '.$userData['last_name']; ?><span class="font-weight-light">,
+                    27</span>
                 </h5>
                 <div class="h5 font-weight-300">
                   <i class="ni location_pin mr-2"></i>Fusagasugá, Colombia
@@ -166,8 +169,8 @@ if(!empty($sessData['status']['msg'])){
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Correo Electronico</label>
-                        <input type="email" id="input-email" required name="email" class="form-control" placeholder="jesse@example.com"
-                        value="<?php echo $userData['email']; ?>">
+                        <input type="email" id="input-email" required name="email" class="form-control"
+                          placeholder="jesse@example.com" value="<?php echo $userData['email']; ?>">
                       </div>
                     </div>
                   </div>
@@ -175,15 +178,17 @@ if(!empty($sessData['status']['msg'])){
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" required for="input-first-name">Nombre</label>
-                        <input type="text" name="name" required minlength="5" id="input-first-name" class="form-control" pattern="[a-zA-Z ]{5}"   required title="Compruebe el nombre" placeholder="First name"
-                         value="<?php echo $userData['first_name']; ?>">
+                        <input type="text" name="name" required minlength="5" id="input-first-name" class="form-control"
+                          pattern="[a-zA-Z ]{5}" required title="Compruebe el nombre" placeholder="First name"
+                          value="<?php echo $userData['first_name']; ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Apellido</label>
-                        <input type="text"  name="ape" required  pattern="[a-zA-Z ]{5}"   required title="Compruebe el apellido " class="form-control" placeholder="Last name" 
-                        value="<?php echo $userData['last_name']; ?>">
+                        <input type="text" name="ape" required pattern="[a-zA-Z ]{5}" required
+                          title="Compruebe el apellido " class="form-control" placeholder="Last name"
+                          value="<?php echo $userData['last_name']; ?>">
                       </div>
                     </div>
                   </div>
@@ -195,58 +200,58 @@ if(!empty($sessData['status']['msg'])){
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label"  for="phone">Telefono</label>
-                        <input id="phone" type="number" class="form-control"required pattern="{7}[0-9]"   required title="Compruebe el Telefono"  required name="phone" placeholder="Home Address" 
-                        value="<?php echo $userData['phone']; ?>">
+                        <label class="form-control-label" for="phone">Telefono</label>
+                        <input id="phone" type="number" class="form-control" required pattern="{7}[0-9]" required
+                          title="Compruebe el Telefono" required name="phone" placeholder="Home Address"
+                          value="<?php echo $userData['phone']; ?>">
                       </div>
                     </div>
                   </div>
                   <div class="col-12 text-right">
                     <button type="submit" name="pefSubmit" class="btn btn-sm btn-primary">Guardar</button>
-                </div>
+                  </div>
               </form>
-                </div>
-                <hr class="my-4" />
-                <!-- Description -->
-                 <div class="container" id="formulario">
-                <form method="POST" action="../userAccount.php">
+            </div>
+            <hr class="my-4" />
+            <!-- Description -->
+            <div class="container" id="formulario">
+              <form method="POST" action="../userAccount.php">
                 <h6 class="heading-small text-muted mb-4">Cambio de Contraseña</h6>
                 <div class="pl-lg-4">
-                <div class="row">
+                  <div class="row">
                     <div class="col-lg-6">
                       <div class="formulario__grupo" id="grupo__password">
-                      <div class="formulario__grupo-input">
-                        <label class="form-control-label" for="input-first-name">Contraseña Actual</label>
-                        <input type="password" name="pass1" id="password2" required  class="formulario__input">
+                        <div class="formulario__grupo-input">
+                          <label class="form-control-label" for="input-first-name">Contraseña Actual</label>
+                          <input type="password" name="pass1" id="password2" required class="formulario__input">
                           <i class="formulario__validacion-estado">
-                              <span class="fas fa-eye" id="ver2" onclick="mostrar2()"></span>
+                            <span class="fas fa-eye" id="ver2" onclick="mostrar2()"></span>
                           </i>
+                        </div>
+
                       </div>
-  
-                    </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="formulario__grupo" id="grupo__password">
-                         <div class="formulario__grupo-input">
-                        <label class="form-control-label" for="input-last-name">Nueva Contraseña</label>
-                        <input type="password" minlength="12" name="pass2"id="password" required  class="formulario__input">
-                                                  <i class="formulario__validacion-estado ">
-                              <span class="fas fa-eye" id="ver" onclick="mostrar()"></span>
+                        <div class="formulario__grupo-input">
+                          <label class="form-control-label" for="input-last-name">Nueva Contraseña</label>
+                          <input type="password" minlength="12" name="pass2" id="password" required
+                            class="formulario__input">
+                          <i class="formulario__validacion-estado ">
+                            <span class="fas fa-eye" id="ver" onclick="mostrar()"></span>
                           </i>
+                        </div>
+                        <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.
+                        </p>
+                        <div class="nivelSeguridad">
+                          <span id="nivelseguridad">bajo</span>
+                          <input type="hidden" id="nivels" name="nivel">
+                          <div class="nivelesColores">
+                            <div class="spanNivelesColores"></div>
+                          </div>
+                          <div class="NivelesColores"></div>
+                        </div>
                       </div>
-                      <p class="formulario__input-error">La contraseña debe tener mas de 12 caracteres.
-                                    </p>
-                                    <div class="nivelSeguridad">
-                                        <span id="nivelseguridad">bajo</span>
-                                        <input type="hidden" id="nivels" name="nivel">
-                                        <div class="nivelesColores">
-                                            <div class="spanNivelesColores"></div>
-                                        </div>
-
-                                        <div class="NivelesColores"></div>
-
-                                    </div>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -255,38 +260,16 @@ if(!empty($sessData['status']['msg'])){
                 </div>
               </form>
             </div>
-   
-            </div>
+
           </div>
         </div>
       </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center  text-lg-left  text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
     </div>
+    <!-- Footer -->
+    <?php
+        include 'componentes/footer.php';
+      ?>
+  </div>
 
 
   </div>
@@ -302,17 +285,17 @@ if(!empty($sessData['status']['msg'])){
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
-      <!-- JS Propios -->
-      <script src="../js/fontawesome.min.js" crossorigin="anonymous"></script>
-    <!-- Control de contraseñas -->
-    <script src='../js/visualizar.js'></script>
-    <!-- Medidor -->
-    <script src='../js/medidor.js'></script>
-    <script type="text/javascript"> 
-      document.getElementById('password').onkeypress = function() { 
-      document.getElementById('nivels').value = document.getElementById('nivelseguridad').innerHTML; 
-} 
-</script> 
+  <!-- JS Propios -->
+  <script src="../js/fontawesome.min.js" crossorigin="anonymous"></script>
+  <!-- Control de contraseñas -->
+  <script src='../js/visualizar.js'></script>
+  <!-- Medidor -->
+  <script src='../js/medidor.js'></script>
+  <script type="text/javascript">
+    document.getElementById('password').onkeypress = function () {
+      document.getElementById('nivels').value = document.getElementById('nivelseguridad').innerHTML;
+    }
+  </script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ $forumData=$forum->getRows($conditionsf);
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="index.html">ATOMIX</a>
+      <a class="navbar-brand" href="index.php">ATOMIX</a>
 
       <!-- Toggle button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

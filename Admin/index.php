@@ -133,16 +133,15 @@ if(!empty($sessData['status']['msg'])){
           </form>
         </div>
       </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  <!-- Footer -->
-  <?php
+      <!-- Footer -->
+      <?php
         include 'componentes/footer.php';
       ?>
+    </div>
   </div>
-  </div>
+
+
+
   <!-- Argon Scripts -->
   <!-- Core -->
 
