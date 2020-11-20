@@ -129,8 +129,6 @@ if(!empty($sessData['status']['msg'])){
 
 		
         <?php } ?>
-	
-
     <!-- JS Font Awesome -->
     <script src="js/fontawesome.min.js" crossorigin="anonymous"></script>
     <!-- JS Bootrstrap -->
